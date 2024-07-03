@@ -14,11 +14,10 @@ import java.util.Properties;
 
 public class Util {
 
-    //Реализация JDBC
     private static final String URL = "jdbc:mysql://localhost:3306/users_schema";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
-
+    private static SessionFactory sessionFactory;
     private static Connection connection = null;
 
     private Util() {
@@ -40,11 +39,6 @@ public class Util {
             e.printStackTrace();
         }
     }
-
-
-    //Реализация Hibernate
-
-    private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
@@ -76,8 +70,8 @@ public class Util {
         return sessionFactory;
     }
 
-    public static void closeSession() {
-        getSessionFactory().close();
+    public static void closeSessionFactory() {
+        sessionFactory.close();
     }
 }
 
